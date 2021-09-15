@@ -19,3 +19,9 @@ p {
   font-size: 1.5em;
   color: #ffff;
 }
+
+#results p {
+  font-size: 1rem;
+  margin: 0;
+  text-align: left;
+}
