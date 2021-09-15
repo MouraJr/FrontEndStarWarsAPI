@@ -1,4 +1,4 @@
-const results = document.querySelector('#results');
+// https://geraldomoura-firstfrontend-swapi.surge.sh/
 
 // Using async function to get data and turn into Json
 async function fetchData(value) {
@@ -9,6 +9,7 @@ async function fetchData(value) {
 }
 
 function displayResults(data, value) {
+    const results = document.querySelector('#results');
 
     let output = '';
 
