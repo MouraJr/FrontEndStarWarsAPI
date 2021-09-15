@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Star Jedi Outline';
+    src: url('StarJediOutline.eot');
+    src: url('StarJediOutline.eot?#iefix') format('embedded-opentype'),
+        url('StarJediOutline.woff2') format('woff2'),
+        url('StarJediOutline.woff') format('woff'),
+        url('StarJediOutline.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

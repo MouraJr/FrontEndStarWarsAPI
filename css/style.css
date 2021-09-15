@@ -1,8 +1,14 @@
 @font-face {
-  font-family: 'StarJedi';
-  src: url('fonts/StarjediSpecialEdition-9Bqy.tff');
+  font-family: 'Star Jedi Outline';
+  src: url('fonts/StarJediOutline.eot');
+  src: url('fonts/StarJediOutline.eot?#iefix') format('embedded-opentype'),
+    url('fonts/StarJediOutline.woff2') format('woff2'), url('StarJediOutline.woff') format('woff'),
+    url('fonts/StarJediOutline.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-.font-star-wars {
-  font-family: 'StarJedi', sans-serif;
+h1 {
+  font-family: 'Star Jedi Outline';
 }
