@@ -10,29 +10,31 @@
 
 const results = document.querySelector('#results');
 
-let text = 'r2';
+// Event listener to seach for spaceship
+document.querySelector('#search').addEventListener('click', () => {
+    console.log('Hello');
+    // When clicked will fetch all starships from API
+    // Get the word from input field
+    const searchWord = document.querySelector('input').value;
+    asyncFetch(searchWord);
+    // Getting the value from input
+})
+
+// let text = 'Death Star';
 
 async function fetchData(value) {
     // fetch('https://swapi.dev/api/starships/')
     //     .then(response => response.json())
     //     .then(data => console.log(data));
-    const res = await fetch(`https://swapi.dev/api/people/?search=${value}`);
+    const res = await fetch(`https://swapi.dev/api/starships/?search=${value}`);
     const data = await res.json();
     console.log(data)
 }
 
-fetchData(text);
+// fetchData(text);
 
 // fetchData();
 
-// Event listener to seach for spaceship
-// document.querySelector('#search').addEventListener('click', () => {
-//     // When clicked will fetch all starships from API
-//     asyncFetch('starships');
-//     // Getting the value from input
-//     // const searchWord = document.querySelector('input').value;
 
-//     // console.log(data);
-// })
 
 
