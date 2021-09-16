@@ -68,7 +68,3 @@ document.querySelector('#inputSearch').addEventListener('keydown', function (e) 
         fetchData(searchWord);
     }
 });
-
-
-
-

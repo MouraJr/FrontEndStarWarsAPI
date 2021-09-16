@@ -12,6 +12,11 @@
 
 body {
   background: #000;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: 'overlap';
+  overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {
@@ -49,4 +54,15 @@ p {
 
 #results .card:hover {
   background-color: rgb(0, 0, 0);
+  border: 1px solid grey;
+  color: #ffff;
+}
+
+#animated-bg {
+  grid-area: overlap;
+}
+
+#search-container {
+  grid-area: overlap;
+  z-index: 99;
 }

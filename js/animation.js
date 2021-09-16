@@ -4,17 +4,16 @@
 * Inspired from https://codepen.io/trhino/pen/JFmiK
 * Updated to remove jQuery dependency and right to left animation
 */
-
 const canvas = document.getElementById('animated-bg');
 
 function Stars() {
     //stars properties
     this.color = 'rgba(255, 255, 255, 1)';
-    this.minRadius = 0.5;
+    this.minRadius = 0.7;
     this.maxRadius = 1.5;
-    this.minSpeed = .1;
-    this.maxSpeed = .5;
-    this.fps = 60;
+    this.minSpeed = .7;
+    this.maxSpeed = .10;
+    this.fps = 200;
     this.numStars = 400;
     this.canvas = document.getElementById('animated-bg');
     this.ctx = this.canvas.getContext('2d');
