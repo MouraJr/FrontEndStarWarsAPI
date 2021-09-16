@@ -1,32 +1,15 @@
-let scene, camera, renderer;
-function init() {
-    //create scene object
-    scene = new THREE.Scene();
+// const canvas = document.getElementById('animated-bg')
+// const ctx = canvas.getContext("2d")
 
-    //setup camera with facing upward
-    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
-    camera.position.z = 1;
-    camera.rotation.x = Math.PI / 2;
+// let screen, starArr;
 
-    //setup renderer
-    renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-    animate();
-}
-//rendering loop
-function animate() {
-    renderer.render(scene, camera);
-    requestAnimationFrame(animate);
-}
-init();
+// let params = {
+//     speed: 10,
+//     count: 400,
+//     life: 5
+// };
 
-starGeo = new THREE.Geometry();
-for (let i = 0; i < 6000; i++) {
-    let star = new THREE.Vector3(
-        Math.random() * 600 - 300,
-        Math.random() * 600 - 300,
-        Math.random() * 600 - 300
-    );
-    starGeo.vertices.push(star);
-}
+// function Star() {
+//     this.x = Math.random() * canvas.width;
+//     this.y = 
+// }
