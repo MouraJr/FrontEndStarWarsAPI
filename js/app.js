@@ -57,7 +57,17 @@ document.querySelector('#search').addEventListener('click', () => {
     // Get the word from input field
     const searchWord = document.querySelector('input').value;
     fetchData(searchWord);
-})
+});
+
+document.querySelector('#inputSearch').addEventListener('keyup', function (e) {
+    if (e.keyCode === 13) {
+        // When clicked will fetch all starships from API
+        // Get the word from input field
+        console.log('works')
+        const searchWord = document.querySelector('input').value;
+        fetchData(searchWord);
+    }
+});
 
 
 
