@@ -109,7 +109,7 @@ function displayPlanetsResults(data) {
             <div class='card p-4 m-3'>
                 <h4 class='card-header'>No Results</h4>
                 <div class='card-body text-center'>
-                    <p>No Character with given name.</p>
+                    <p>No Planets with given name.</p>
                 </div>
             </div>    
         </div> 
