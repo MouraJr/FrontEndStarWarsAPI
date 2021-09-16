@@ -5,20 +5,33 @@ async function fetchData(value) {
     // Await is making sure the promise is loaded before moving to next line
     const res = await fetch(`https://swapi.dev/api/starships/?search=${value}`);
     const data = await res.json();
-    displayResults(data, value)
+    displayResults(data, value);
+    console.log(data)
 }
 
 function displayResults(data, value) {
     const results = document.querySelector('#results');
-
     let output = '';
+
+    if (data.count === 0) {
+        output = `
+        <div class="col-sm-12">
+            <div class='card p-4 m-3'>
+                <h4 class='card-header'>No Results</h4>
+                <div class='card-body text-center'>
+                    <p>No Spaceship with given name.</p>
+                </div>
+            </div>    
+        </div> 
+        `
+    }
 
     data.results.forEach(element => {
         output += `
             <div class="col-sm-6">
                 <div class='card p-4 m-3'>
                     <h4 class='card-header'>${element.name}</h4>
-                    <div class='card-body'>
+                    <div class='card-body text-start'>
                         <p class='card-text'>Model: ${element.model}</p>
                         <p class='card-text'>Manufacturer: ${element.manufacturer}</p>
                         <p class='card-text'>Max Atmosphering Speed: ${element.max_atmosphering_speed}</p>
