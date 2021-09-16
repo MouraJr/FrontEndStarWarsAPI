@@ -9,6 +9,13 @@ let params = {
     life: 5
 };
 
+setup();
+update();
+
+window.onresize = function () {
+    setup();
+}
+
 function Star() {
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
@@ -41,4 +48,32 @@ function Star() {
     };
 }
 
+function setup() {
+    screen = {
+        w: window.innerWidth,
+        h: window.innerHeight,
+        c: [window.innerWidth * 0.5, window.innerHeight * 0.5],
+    };
+    window.cancelAnimationFrame(update);
 
+    canvas.width = screen.w;
+    canvas.height = screen.h;
+
+    starArr = [];
+
+    for (var i = 0; i < params.count; i++) {
+        starArr[i] = new Star();
+    }
+}
+
+function update() {
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    starArr.forEach(function (s) {
+        s.show();
+        s.move();
+    });
+
+    window.requestAnimationFrame(update)
+}
