@@ -1,79 +1,111 @@
-const canvas = document.getElementById('animated-bg')
-const ctx = canvas.getContext("2d")
+/*
+* Stars moving right to left
+* Created for use on http://www.shariqraza.com
+* Inspired from https://codepen.io/trhino/pen/JFmiK
+* Updated to remove jQuery dependency and right to left animation
+*/
 
-let screen, starArr;
+const canvas = document.getElementById('animated-bg');
 
-let params = {
-    speed: 10,
-    count: 400,
-    life: 5
-};
-
-setup();
-update();
-
-window.onresize = function () {
-    setup();
+function Stars() {
+    //stars properties
+    this.color = 'rgba(255, 255, 255, 1)';
+    this.minRadius = 0.5;
+    this.maxRadius = 1.5;
+    this.minSpeed = .1;
+    this.maxSpeed = .5;
+    this.fps = 60;
+    this.numStars = 400;
+    this.canvas = document.getElementById('animated-bg');
+    this.ctx = this.canvas.getContext('2d');
 }
 
-function Star() {
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.z = Math.random() * canvas.width;
+//Initalize
+Stars.prototype.init = function () {
+    this.render();
+    this.createCircle();
+}
 
-    this.move = function () {
-        this.z -= params.speed;
+Stars.prototype._rand = function (min, max) {
+    return Math.random() * (max - min) + min;
+}
 
-        if (this.z <= 0) {
-            this.z = canvas.width;
+Stars.prototype.render = function () {
+    var self = this,
+        wHeight = window.innerHeight,
+        wWidth = window.innerWidth;
+
+    self.canvas.width = wWidth;
+    self.canvas.height = wHeight;
+
+    window.addEventListener('resize', self.render);
+}
+
+//Create shape
+Stars.prototype.createCircle = function () {
+    var star = [];
+
+    for (var i = 0; i < this.numStars; i++) {
+        var self = this;
+        star[i] = {
+            radius: self._rand(self.minRadius, self.maxRadius),
+            xPos: self._rand(0, canvas.width),
+            yPos: self._rand(0, canvas.height),
+            xVelocity: self._rand(self.minSpeed, self.maxSpeed),
+            yVelocity: self._rand(self.minSpeed, self.maxSpeed),
+            color: self.color
         }
-    };
 
-    this.show = function () {
-        let x, y, radius, opacity;
-
-        radius = canvas.width / this.z;
-
-        x = (this.x - screen.c[0]) * radius;
-        x = x + screen.c[0];
-        y = (this.y - screen.c[1]) * radius;
-        y = y + screen.c[1];
-
-        opacity = radius > params.life ? (2 - radius / params.life) * 1.5 : 1;
-
-        ctx.beginPath();
-        ctx.fillStyle = 'rgba(255, 255, 255)' + opacity + ")";
-        ctx.arc(x, y, raius, 0, Math.PI * 2);
-        ctx.fill();
-    };
-}
-
-function setup() {
-    screen = {
-        w: window.innerWidth,
-        h: window.innerHeight,
-        c: [window.innerWidth * 0.5, window.innerHeight * 0.5],
-    };
-    window.cancelAnimationFrame(update);
-
-    canvas.width = screen.w;
-    canvas.height = screen.h;
-
-    starArr = [];
-
-    for (var i = 0; i < params.count; i++) {
-        starArr[i] = new Star();
+        //once values are determined, draw star on canvas
+        self.draw(star, i);
     }
+    //...and once drawn, animate the star
+    self.animate(star);
 }
 
-function update() {
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+// Draw the stars on canvas
+Stars.prototype.draw = function (star, i) {
+    var self = this,
+        ctx = self.ctx;
+    ctx.fillStyle = star[i].color;
 
-    starArr.forEach(function (s) {
-        s.show();
-        s.move();
-    });
-
-    window.requestAnimationFrame(update)
+    ctx.beginPath();
+    ctx.arc(star[i].xPos, star[i].yPos, star[i].radius, 0, 2 * Math.PI, false);
+    ctx.fill();
 }
+
+// Animate stars from right to left
+Stars.prototype.animate = function (star) {
+    var self = this,
+        ctx = self.ctx;
+
+    setInterval(function () {
+        //clears canvas
+        self.clearCanvas();
+        //redraws stars
+        for (var i = 0; i < self.numStars; i++) {
+            star[i].xPos -= star[i].xVelocity;
+            //if star goes off screen from the left call reset method
+            if (star[i].xPos < 0) {
+                self.resetStar(star, i);
+            }
+            else {
+                self.draw(star, i);
+            }
+        }
+    }, 1000 / self.fps);
+}
+
+// reset the star xPos with a randon YPos 
+Stars.prototype.resetStar = function (star, i) {
+    var self = this;
+    star[i].xPos += canvas.width + star[i].radius;
+    star[i].yPos = self._rand(0, canvas.height);
+    self.draw(star, i);
+}
+
+Stars.prototype.clearCanvas = function () {
+    this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+var star = new Stars().init();
