@@ -30,14 +30,15 @@ Stars.prototype._rand = function (min, max) {
 }
 
 Stars.prototype.render = function () {
-    var self = this,
-        wHeight = window.innerHeight,
-        wWidth = window.innerWidth;
+    // let self = this,
+    //     wHeight = window.innerHeight,
+    //     wWidth = window.innerWidth;
 
-    self.canvas.width = wWidth;
-    self.canvas.height = wHeight;
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
 
-    window.addEventListener('resize', self.render);
+    window.addEventListener('resize', this.render);
+    Stars();
 }
 
 //Create shape
@@ -107,4 +108,4 @@ Stars.prototype.clearCanvas = function () {
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-var star = new Stars().init();
+let star = new Stars().init();
