@@ -28,7 +28,7 @@ function displayResults(data, value) {
 
     data.results.forEach(element => {
         output += `
-            <div class="col-sm-6">
+            <div class=".col-lg-4 col-md-6 col-sm-12 col-12">
                 <div class='card p-4 m-3'>
                     <h4 class='card-header'>${element.name}</h4>
                     <div class='card-body text-start'>
@@ -41,7 +41,6 @@ function displayResults(data, value) {
                         <p class='card-text'>Consumables: ${element.consumables}</p>
                         <p class='card-text'>Hyperdrive Rating: ${element.hyperdrive_rating}</p>
                         <p class='card-text'>Starship Class: ${element.starship_class}</p>
-                        <p class='card-text'>Crew: ${element.crew}</p>
                     </div>
                 </div>    
             </div>    

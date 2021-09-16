@@ -60,6 +60,8 @@ p {
 
 #animated-bg {
   grid-area: overlap;
+  height: 100%;
+  width: 100vw;
 }
 
 #search-container {

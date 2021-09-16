@@ -10,7 +10,7 @@ function Stars() {
     //stars properties
     this.color = 'rgba(255, 255, 255, 1)';
     this.minRadius = 0.7;
-    this.maxRadius = 1.5;
+    this.maxRadius = 1.2;
     this.minSpeed = .7;
     this.maxSpeed = .10;
     this.fps = 200;
@@ -30,9 +30,6 @@ Stars.prototype._rand = function (min, max) {
 }
 
 Stars.prototype.render = function () {
-    // let self = this,
-    //     wHeight = window.innerHeight,
-    //     wWidth = window.innerWidth;
 
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
