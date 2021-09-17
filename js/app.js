@@ -178,7 +178,7 @@ const inputSearch = (btnToSearch, inputToSearch) => document.querySelector(btnTo
         if (inputToSearch === '#inputSearchPlanets') {
             url = `https://swapi.dev/api/planets/?search=${searchWord}`;
         };
-        fetchData(url);
+        fetchData(url, searchWord);
     }
 });
 
