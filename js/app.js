@@ -5,7 +5,6 @@ async function fetchData(url, searchWord) {
     // Await is making sure the promise is loaded before moving to next line
     const res = await fetch(url);
     const data = await res.json();
-    console.log(url);
     if (url === `https://swapi.dev/api/starships/?search=${searchWord}`) {
         displayStarshipsResults(data);
     };
@@ -163,9 +162,10 @@ const btnSearch = (btnToSearch, inputToSearch) => document.querySelector(btnToSe
 
 const inputSearch = (btnToSearch, inputToSearch) => document.querySelector(btnToSearch).addEventListener('keydown', function (e) {
     if (e.keyCode === 13) {
-        // When enter will fetch all starships from API
+        // When clicked will fetch all starships from API
         // Get the word from input field
         const searchWord = document.querySelector(inputToSearch).value;
+        // Declare variable for url
         let url = '';
         if (inputToSearch === '#inputSearchStarships') {
             url = `https://swapi.dev/api/starships/?search=${searchWord}`;
@@ -178,6 +178,8 @@ const inputSearch = (btnToSearch, inputToSearch) => document.querySelector(btnTo
         if (inputToSearch === '#inputSearchPlanets') {
             url = `https://swapi.dev/api/planets/?search=${searchWord}`;
         };
+
+        // Invoke data with fetch function
         fetchData(url, searchWord);
     }
 });
